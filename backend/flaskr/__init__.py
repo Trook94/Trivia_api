@@ -166,7 +166,8 @@ def create_app(test_config=None):
 
             searchTerm = body.get('searchTerm', None)
 
-            selection = Question.query.order_by(Question.id).filter(Question.question.ilike('%{}%'.format(searchTerm))).all()
+            selection = Question.query.order_by(Question.id).filter
+            (Question.question.ilike('%{}%'.format(searchTerm))).all()
             current_questions = pagination(request, selection)
 
             return jsonify({
@@ -174,9 +175,7 @@ def create_app(test_config=None):
                 'questions': current_questions,
                 'total_questions': len(selection),
                 'current_category': None
-            })    
-            
-
+            })
         except:
             abort(422)
 
